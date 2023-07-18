@@ -38,5 +38,14 @@ public class UserDaoService {
 
     }
 
+    public void deleteUser(int id){
+        for(UserEntity user: userEntityList){
+            if(user.getId() == id){
+                userEntityList.remove(user);
+                break;
+            }
+        }
+    }
+
 
 }
