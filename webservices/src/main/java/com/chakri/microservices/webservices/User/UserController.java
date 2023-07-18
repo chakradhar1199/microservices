@@ -26,7 +26,7 @@ public class UserController {
     public ResponseEntity<UserEntity> getUserById(@PathVariable int id){
         var user = userDaoService.getUserById(id);
         if(user==null){
-            throw new UserNotFoundException("id="+id);
+            throw new UserNotFoundException("id = "+id);
         }
         return ResponseEntity.ok().body(user);
     }
