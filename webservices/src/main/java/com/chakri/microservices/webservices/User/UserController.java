@@ -1,6 +1,7 @@
 package com.chakri.microservices.webservices.User;
 
 import com.chakri.microservices.webservices.Exception.UserNotFoundException;
+import jakarta.validation.Valid;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,7 @@ public class UserController {
 
 //    post
     @PostMapping("/users/adduser/")
-    public ResponseEntity<UserEntity> addUser(@RequestBody UserEntity user){
+    public ResponseEntity<UserEntity> addUser(@Valid @RequestBody UserEntity user){
         userDaoService.addUser(user);
         return ResponseEntity.created(URI.create("/user/"+user.getId())).body(user);
     }

@@ -1,11 +1,19 @@
 package com.chakri.microservices.webservices.User;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
+
 import java.util.Date;
 
 
 public class UserEntity {
+    @Size(min = 2)
     private String name;
+
     private int id;
+
     private String department;
 
     public String getName() {
@@ -48,8 +56,10 @@ public class UserEntity {
         return dateOfBirth;
     }
 
+
     private long salary;
 
+    @Past
     private Date dateOfBirth;
 
     public UserEntity(String name, int id, String department, long salary, Date dateOfBirth) {
