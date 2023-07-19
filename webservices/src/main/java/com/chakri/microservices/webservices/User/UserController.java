@@ -11,7 +11,6 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-
 public class UserController {
 
     @Autowired
