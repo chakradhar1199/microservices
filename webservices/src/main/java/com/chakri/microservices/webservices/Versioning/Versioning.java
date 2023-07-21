@@ -1,5 +1,6 @@
 package com.chakri.microservices.webservices.Versioning;
 
+import com.chakri.microservices.webservices.Exception.UserNotFoundException;
 import com.chakri.microservices.webservices.User.UserDaoService;
 import com.chakri.microservices.webservices.User.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class Versioning {
     @GetMapping("/v1/user/{id}")
     public ResponseEntity<UserName> getUserNameByID(@PathVariable int id){
         UserEntity user = userDaoService.getUserById(id);
+        if(user==null){
+            throw new UserNotFoundException("id = "+id);
+        }
         UserName u = new UserName(user.getName());
         return ResponseEntity.ok().body(u);
     }
@@ -23,6 +27,9 @@ public class Versioning {
     @GetMapping("/v2/user/{id}")
     public ResponseEntity<UserName> getUserNameByIDVersion2(@PathVariable int id){
         UserEntity user = userDaoService.getUserById(id);
+        if(user==null){
+            throw new UserNotFoundException("id = "+id);
+        }
         String[] names = user.getName().split(" ");
         UserName u = null;
         if(names.length == 2){
